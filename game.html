@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="game.css">
+</head>
+<body>
+    <div id="base">
+         <div class="back">
+         <h1> Game Base</h1>
+         <h3>Guess a number between 1 and 100</h3>
+         <p id="outputText"> Enter a Number below</p>
+         <input id="userInput">
+         <button id="startButton"> Click Here To Start</button>
+         <button id="againButton"> Play again</button>
+        </div>
+    </div> 
+
+    <script>
+    var startButton = document.getElementById("startButton");
+    var againButton = document.getElementById ("againButton");
+    var output = document.getElementById("outputText");
+
+    var randomNumber = Math.ceil(Math.random()*100);
+
+    function checkNumber(){
+        var input = document.getElementById("userInput").value;
+        if(input == randomNumber){
+            output.innerHTML= "You guessed right "+", "+" it was "+ randomNumber; 
+            output.style.color= "green";
+        }
+        else if(input > randomNumber && input < 100){
+            output.innerHTML= "You guessed too high";
+        }
+        else if(input < randomNumber && input > 1){
+            output.innerHTML = "You guessed too low";
+        }
+        else if(input < 1){
+            output.innerHTML = "Too high, it has to be between 1 and 100";
+        }
+        else if(isNaN(input)){
+            output.innerHTML = "That is not a number!";
+        }
+        else{
+            output.innerHTML= "Too low, it has to be between 1 and 100";
+        }
+    }
+
+    startButton.addEventListener("click", checkNumber);
+    againButton.addEventListener("click", function(){
+        location.reload();
+    })
+
+    </script>
+</body>
+</html>
